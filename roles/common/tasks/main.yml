@@ -3,17 +3,17 @@
   yum : name=libselinux-python state=latest
 
 - name: users exist
-  user: name={{item.name}} state=present password={{item.password}} group={{item.groups}}
+  user: name={{item.name}} state=present password={{item.password}} groups={{item.groups}}
   with_items: '{{users}}'
   tags: users
 
 - name: ~/.ssh for users exist
-  file: path="/home/{{item.name}}/.ssh" state=directory owner={{item.name}} group={{item.name}} mode=0700
+  file: path="/home/{{item.name}}/.ssh" state=directory owner={{item.name}} group={{item.groups}} mode=0700
   with_items: '{{users}}'
   tags: users
 
 - name: authorized keys is deployed
-  copy: src="authorized_keys" dest="/home/{{item.name}}/.ssh/authorized_keys" owner={{item.name}} group={{item.name}} mode=0600
+  copy: src="authorized_keys" dest="/home/{{item.name}}/.ssh/authorized_keys" owner={{item.name}} group={{item.groups}} mode=0600
   with_items: '{{users}}'
   tags: users
 
