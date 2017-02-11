@@ -1,0 +1,16 @@
+[ishikari-2-webservers]
+192.168.43.42
+[ishikari-2-dbservers]
+192.168.43.43
+# webservsrs in all geos
+[webservers:children]
+ishikari-2-webservers
+
+# dbserbers in all geos
+[dbserbvers:children]
+ishikari-2-dbservers
+
+# everything in the ishikari-2 geo
+[ishikari-2:children]
+ishikari-2-webservers
+ishikari-2-dbservers
