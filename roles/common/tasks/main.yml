@@ -13,7 +13,7 @@
   tags: users
 
 - name: authorized keys is deployed
-  copy: src="authorized_keys_for_{{item.name}}" dest="/home/{{item.name}}/.ssh/authorized_keys" owner={{item.name}} group={{item.name}} mode=0600
+  copy: src="authorized_keys" dest="/home/{{item.name}}/.ssh/authorized_keys" owner={{item.name}} group={{item.name}} mode=0600
   with_items: '{{users}}'
   tags: users
 

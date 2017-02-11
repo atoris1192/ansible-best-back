@@ -7,7 +7,7 @@
 ishikari-2-webservers
 
 # dbserbers in all geos
-[dbserbvers:children]
+[dbservers:children]
 ishikari-2-dbservers
 
 # everything in the ishikari-2 geo
