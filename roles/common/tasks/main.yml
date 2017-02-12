@@ -30,3 +30,18 @@
   service: name=sshd state=running enabled=yes
   tags: sshd
 
+- name: touch iptables
+  file: path=/etc/sysconfig/iptables  state=touch owner=root group=root  mode=600
+  tags: iptables
+
+- name: iptables is enabled and started
+  service: name=iptables state=running enabled=yes
+  tags: tptables
+
+- name: iptabled is cofigured
+  template: src="iptables" dest="/etc/sysconfig/iptables" owner=root group=root mode=600
+  notify:
+    - restart iptables
+  tags: iptables
+
+  

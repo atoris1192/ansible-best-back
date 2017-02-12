@@ -1,0 +1,6 @@
+iptables:
+  accept_tcp_rules:
+    - port: 22
+    - port: 3306 
+      source: 192.168.43.42
+
