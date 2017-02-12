@@ -1,0 +1,25 @@
+# httpd
+- name: httpd is installed
+  yum : pkg=httpd state=installed
+  tags: httpd
+
+- name: httpd is running and enabled
+  service: name=httpd state=running enabled=yes
+  tags: httpd
+
+# php
+- name: php is instaled
+  yum: pkg={{item}} state=installed
+  with_items:
+    - php
+    - php-mbstring
+    - php-mysql
+  notify:
+    - restart httpd
+  tags: httpd
+
+- name: php is configured
+  notify:
+    - restart httpd
+  lineinfile: dest="/etc/php.ini" state=present regexp="^\;date.timezone =$" line="date.timezone = Asia/Tokyo" backrefs=yes
+  tags: httpd
