@@ -23,3 +23,19 @@
     - restart httpd
   lineinfile: dest="/etc/php.ini" state=present regexp="^\;date.timezone =$" line="date.timezone = Asia/Tokyo" backrefs=yes
   tags: httpd
+
+# wordpress
+- name: unzip installed
+  yum : name=unzip state=latest
+  tags: wordpress
+
+- name: wordpress source files deployed
+  unarchive: src="wordpress-4.2.4-ja.zip" dest="/var/www/html" owner=apache group=apache mode=0755
+  args:
+    creates: /var/www/html/wordpress
+  tags: wordpress
+
+- name: apache is wordpress directory owner
+  file: path=/var/www/html/wordpress owner=apache group=apache recurse=yes
+  tags: wordpress
+

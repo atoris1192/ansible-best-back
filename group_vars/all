@@ -2,3 +2,10 @@ users:
   - name: niuishi
     password: "$1$VYr4R1mD$dLxAzTk/YQQ4WUmnHgjeJ."
     groups: "wheel"
+
+wordpress: {
+    web_servers: "192.168.43.42",
+    db_name: "try_ansible_bp",
+    db_user: "ansibler",
+    db_host: "192.168.43.43"
+}
