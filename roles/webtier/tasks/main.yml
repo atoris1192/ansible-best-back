@@ -35,6 +35,10 @@
     creates: /var/www/html/wordpress
   tags: wordpress
 
+- name: wordpress is configured
+  template: src="wp-config.php.j2" dest="/var/www/html/wordpress/wp-config.php" owner=apache group=apache mode=0644
+  tags: wordpress
+
 - name: apache is wordpress directory owner
   file: path=/var/www/html/wordpress owner=apache group=apache recurse=yes
   tags: wordpress

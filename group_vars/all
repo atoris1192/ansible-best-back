@@ -4,8 +4,9 @@ users:
     groups: "wheel"
 
 wordpress: {
-    web_servers: "192.168.43.42",
+    web_server: "192.168.43.42",
     db_name: "try_ansible_bp",
     db_user: "ansibler",
+    db_password: "badpassword",
     db_host: "192.168.43.43"
 }

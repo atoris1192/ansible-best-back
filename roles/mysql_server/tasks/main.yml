@@ -1,0 +1,21 @@
+---
+- name: mysqld is installed
+  yum: pkg=mysql-server state=installed
+  tags: mysqld
+
+- name: MySQL-python is installed
+  yum: pkg=MySQL-python state=installed
+  tags: mysqld
+
+- name: mysqld is runnning and enabled
+  service: name=mysqld state=running enabled=yes
+  tags: mysqld
+
+- name: database for wordpress is created
+  mysql_db: db={{ wordpress.db_name }} state=present encoding=utf8
+  tags: mysqld
+
+- name:  wordpress database user is created
+  mysql_user: name={{ wordpress.db_user }} password={{ wordpress.db_password }} priv={{ wordpress.db_name }}.*:ALL state=present host={{ wordpress.web_server }}
+  tags: mysqld
+
